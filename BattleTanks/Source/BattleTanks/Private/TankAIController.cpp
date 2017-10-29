@@ -4,9 +4,32 @@
 
 void ATankAIController::BeginPlay()
 {
-	auto controlledTank = GetControlledPawn();
-	if(controlledTank)
-		UE_LOG(LogTemp, Warning, TEXT("controlled Tank is %s"), *(controlledTank->GetName()));
+	ControlledTank = getControlledTank();
+	LocatedPlayerTank = GetPlayerTank();
 }
 
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	if (ControlledTank)
+	{
+		if (LocatedPlayerTank)
+		{
+			// Move Towards PlayerTank
+			ControlledTank->AimAt(LocatedPlayerTank->GetActorLocation());
+			// Fire when Ready
+		}
+	}
+}
 
+ATank * ATankAIController::getControlledTank() const
+{
+	return Cast<ATank>(GetPawn());
+}
+
+ATank * ATankAIController::GetPlayerTank()
+{
+	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
+	if (!PlayerPawn) { return nullptr; }
+	return Cast<ATank>(PlayerPawn);
+}

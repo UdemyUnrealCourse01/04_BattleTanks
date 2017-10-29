@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
-
+#include "Runtime/Engine/Classes/Engine/World.h "
 #include "Tank.h"
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
@@ -17,9 +17,17 @@ class BATTLETANKS_API ATankPlayerController : public APlayerController
 	
 	
 public:
-	APawn* controlledTank;
+	ATank* controlledTank;
 	ATank* getControlledTank() const;
-	bool tickIsworking = false;
 	void BeginPlay() override;
 	void Tick(float DeltaTime) override;
+	void AimTowardsCrosshair();
+	bool GetSightRayHitLocation(FVector &HitLocation);
+private:
+	UPROPERTY(EditAnywhere)
+	float CrossHairXLocation = 0.5; // specified by us in the PlayerUI widget when we set the crosshair at 50% location of the widget 
+	UPROPERTY(EditAnywhere)
+	float CrossHairYLocation = 0.33333;// same but 33% in y direction
+	UPROPERTY(EditAnywhere)
+	float LineTraceRange = 100000;
 };
