@@ -29,6 +29,9 @@ void UTankAimingComponent::AimAt(FVector AimLocation , float LaunchSpeed)
 		StartLocation,
 		EndLocation,
 		LaunchSpeed,
+		false,
+		0,
+		0,
 		ESuggestProjVelocityTraceOption::DoNotTrace
 	);
 	if (CalculatedAimDirection)
