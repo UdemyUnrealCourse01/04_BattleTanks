@@ -4,6 +4,7 @@
 
 void ATankAIController::BeginPlay()
 {
+	Super::BeginPlay();
 	ControlledTank = getControlledTank();
 	LocatedPlayerTank = GetPlayerTank();
 }
@@ -13,6 +14,7 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if (ControlledTank)
 	{
+
 		if (LocatedPlayerTank)
 		{
 			// Move Towards PlayerTank

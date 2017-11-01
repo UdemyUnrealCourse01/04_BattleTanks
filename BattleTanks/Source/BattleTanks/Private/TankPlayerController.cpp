@@ -2,7 +2,9 @@
 
 
 #include "TankPlayerController.h"
-#include "DrawDebugHelpers.h"
+#include "Runtime/Engine/Classes/Engine/World.h "
+#include "Tank.h"
+
 void ATankPlayerController::BeginPlay() {
 	Super::BeginPlay();
 	controlledTank = getControlledTank();
