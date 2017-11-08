@@ -7,6 +7,7 @@
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
+class UTankTurret;
 class UTankBarrel;
 class UTankAimingComponent;
 UCLASS()
@@ -30,7 +31,8 @@ public:
 
 	UFUNCTION(BlueprintCallable , Category = Setup)
 	void SetBarrel(UTankBarrel* BarrelToSet);
-
+	UFUNCTION(BlueprintCallable, Category = Setup)
+	void SetTurret(UTankTurret* TurretToSet);
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

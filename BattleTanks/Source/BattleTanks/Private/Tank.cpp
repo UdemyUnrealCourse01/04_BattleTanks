@@ -24,6 +24,10 @@ void ATank::SetBarrel(UTankBarrel * BarrelToSet)
 {
 	TankAimingComponent->SetBarrel(BarrelToSet);
 }
+void ATank::SetTurret(UTankTurret * TurretToSet)
+{
+	TankAimingComponent->SetTurret(TurretToSet);
+}
 // Called to bind functionality to input
 void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {

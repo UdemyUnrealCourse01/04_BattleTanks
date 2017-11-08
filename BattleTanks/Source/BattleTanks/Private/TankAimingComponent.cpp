@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "TankAimingComponent.h"
+#include "TankTurret.h"
 #include "TankBarrel.h"
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/Engine/World.h "
@@ -38,8 +39,8 @@ void UTankAimingComponent::AimAt(FVector AimLocation , float LaunchSpeed)
 	{
 		auto AimDirection = OutLaunchVelocity.GetSafeNormal();
 		auto Time = GetWorld()->GetRealTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f , %s Firing at Direction of : %s"), Time ,*GetOwner()->GetName() , *AimDirection.ToString());
-		MoveBarrel(AimDirection);
+		//UE_LOG(LogTemp, Warning, TEXT("%f , %s Firing at Direction of : %s"), Time ,*GetOwner()->GetName() , *AimDirection.ToString());
+		MoveTurret(AimDirection);
 	}
 	else {
 		auto Time = GetWorld()->GetRealTimeSeconds();
@@ -48,17 +49,29 @@ void UTankAimingComponent::AimAt(FVector AimLocation , float LaunchSpeed)
 	}
 }
 
-void UTankAimingComponent::MoveBarrel(FVector AimDirection)
+
+
+void UTankAimingComponent::MoveTurret(FVector AimDirection)
 {
 	auto BarrelRotation = Barrel->GetForwardVector().Rotation();
+	auto TurretRotation = Turret->GetForwardVector().Rotation();
 	auto AimAsRotation = AimDirection.Rotation();
-	auto DeltaRotation = AimAsRotation - BarrelRotation;
-	Barrel->Elevate(5);
+
+	auto DeltaRotation = AimAsRotation - TurretRotation;
+	Turret->Rotate(DeltaRotation.Yaw);
+	DeltaRotation = AimAsRotation - BarrelRotation;
+	Barrel->Elevate(DeltaRotation.Pitch);
+	//UE_LOG(LogTemp, Warning, TEXT(" amount of rotation of turret to target %f "), DeltaRotation.Yaw);
 }
 
 void UTankAimingComponent::SetBarrel(UTankBarrel * BarrelTSet)
 {
 	Barrel = BarrelTSet;
 
+}
+
+void UTankAimingComponent::SetTurret(UTankTurret * TurretToSet)
+{
+	Turret = TurretToSet;
 }
 
