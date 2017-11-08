@@ -44,7 +44,7 @@ void UTankAimingComponent::AimAt(FVector AimLocation , float LaunchSpeed)
 	}
 	else {
 		auto Time = GetWorld()->GetRealTimeSeconds();
-		UE_LOG(LogTemp, Warning, TEXT("%f ,%s haven't found a target "), Time , *GetOwner()->GetName());
+		//UE_LOG(LogTemp, Warning, TEXT("%f ,%s haven't found a target "), Time , *GetOwner()->GetName());
 
 	}
 }
