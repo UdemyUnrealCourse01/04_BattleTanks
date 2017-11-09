@@ -59,9 +59,9 @@ void UTankAimingComponent::MoveTurret(FVector AimDirection)
 
 	auto DeltaRotation = AimAsRotation - TurretRotation;
 	Turret->Rotate(DeltaRotation.Yaw);
+	//UE_LOG(LogTemp, Warning, TEXT(" amount of rotation of turret to target %f "), DeltaRotation.Yaw);
 	DeltaRotation = AimAsRotation - BarrelRotation;
 	Barrel->Elevate(DeltaRotation.Pitch);
-	//UE_LOG(LogTemp, Warning, TEXT(" amount of rotation of turret to target %f "), DeltaRotation.Yaw);
 }
 
 void UTankAimingComponent::SetBarrel(UTankBarrel * BarrelTSet)
