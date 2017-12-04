@@ -18,12 +18,13 @@ class BATTLETANKS_API ATank : public APawn
 private:
 	UTankAimingComponent* TankAimingComponent = nullptr;
 	UTankBarrel* Barrel = nullptr; // local barrel reference to be used for spawning the projectile
-	UPROPERTY(EditAnywhere, Category = Firing)
-		float LaunchSpeed = 100000.0;// 100 m /s , TODO Set Default speed to sensible value
-	UPROPERTY(EditAnywhere, Category = Setup)
-		TSubclassOf<AProjectile> Projectile;
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	TSubclassOf<AProjectile> Projectile;
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	float LaunchSpeed = 100000.0;// 100 m /s , TODO Set Default speed to sensible value
+	UPROPERTY(EditDefaultsOnly , Category = Firing)
 	float ReloadTime = 3;
-	double LastFireTime = 0;
+	float LastFireTime = 0;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

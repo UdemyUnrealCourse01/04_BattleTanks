@@ -25,10 +25,10 @@ public:
 	void AimTowardsCrosshair();
 	bool GetSightRayHitLocation(FVector &HitLocation);
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float CrossHairXLocation = 0.5; // specified by us in the PlayerUI widget when we set the crosshair at 50% location of the widget 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float CrossHairYLocation = 0.33333;// same but 33% in y direction
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditDefaultsOnly)
 	float LineTraceRange = 100000;
 };

@@ -34,7 +34,7 @@ void ATank::SetTurret(UTankTurret * TurretToSet)
 }
 void ATank::Fire()
 {
-	bool isReloaded = (FPlatformTime::Seconds() - LastFireTime) > ReloadTime; 
+	bool isReloaded = (GetWorld()->GetTimeSeconds() - LastFireTime) > ReloadTime;
 	if (Barrel && isReloaded)
 	{
 		auto projectile = GetWorld()->SpawnActor<AProjectile>(
@@ -43,7 +43,8 @@ void ATank::Fire()
 			Barrel->GetSocketRotation(FName("Projectie"))
 			);
 		projectile->LaunchProjectile(LaunchSpeed);
-		LastFireTime = FPlatformTime::Seconds();
+		LastFireTime = GetWorld()->GetTimeSeconds();
+			
 	}
 }
 // Called to bind functionality to input
